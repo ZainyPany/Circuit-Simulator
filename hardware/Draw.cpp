@@ -1,7 +1,5 @@
-#include "ui/hardware/DrawHelpers.hpp"
+#include "hardware/Draw.hpp"
 #include <cmath>
-using namespace std;
-using namespace sf;
 
 void drawRect(RenderTarget& target, float x, float y, float w, float h, Color color) {
     RectangleShape rect({w, h});
@@ -18,8 +16,7 @@ void drawCircle(RenderTarget& target, float x, float y, float radius, Color colo
     target.draw(circle);
 }
 
-void drawText(RenderTarget& target, Font& font, const string& str,
-              int size, Color color, float x, float y) {
+void drawText(RenderTarget& target, Font& font, string str, int size, Color color, float x, float y) {
     Text text(font, str, size);
     text.setFillColor(color);
     FloatRect box = text.getLocalBounds();
@@ -34,9 +31,8 @@ void drawLine(RenderTarget& target, Vector2f a, Vector2f b, float thickness, Col
     float length = sqrt(dx * dx + dy * dy);
     if (length == 0) return;
 
-    float half = thickness / 2;
-    float sideX = -dy / length * half;   // push the corners sideways
-    float sideY = dx / length * half;
+    float sideX = -dy / length * thickness / 2;   // push the corners sideways
+    float sideY = dx / length * thickness / 2;
 
     Vertex corners[4] = {
         {{a.x + sideX, a.y + sideY}, color},
