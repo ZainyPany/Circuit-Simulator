@@ -7,14 +7,12 @@ ICView::ICView(BreadboardView& b, Font& f, int col, string text, int pinCount)
 
 Vector2f ICView::pinPos(int pin) {
     int pinsPerSide = pins / 2;
-    if (pin <= pinsPerSide) return board.holePos(firstCol + pin - 1, ROW_F);   // bottom row
-    return board.holePos(firstCol + pins - pin, ROW_E);                        // top row
+    if (pin <= pinsPerSide) return board.holePos(firstCol + pin - 1, ROW_F);
+    return board.holePos(firstCol + pins - pin, ROW_E);
 }
 
 void ICView::draw(RenderTarget& target) {
     int pinsPerSide = pins / 2;
-
-    // pins and their numbers
     for (int pin = 1; pin <= pins; pin++) {
         Vector2f p = pinPos(pin);
         bool onTop = pin > pinsPerSide;
@@ -27,8 +25,6 @@ void ICView::draw(RenderTarget& target) {
         if (onTop) numberY = p.y - NUMBER_OFFSET;
         drawText(target, font, to_string(pin), NUMBER_SIZE, NUMBER_COLOR, p.x, numberY);
     }
-
-    // body, pin 1 dot and label
     float top = pinPos(pins).y + GAP_MARGIN;
     float bottom = pinPos(1).y - GAP_MARGIN;
     float left = pinPos(1).x - CHIP_OVERHANG;

@@ -1,5 +1,3 @@
-# Builds and runs the hardware GUI preview.  Usage:  .\run_preview.ps1
-
 Set-Location $PSScriptRoot
 $env:PATH = "C:\msys64\ucrt64\bin;" + $env:PATH
 

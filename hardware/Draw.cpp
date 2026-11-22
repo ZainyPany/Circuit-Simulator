@@ -31,7 +31,7 @@ void drawLine(RenderTarget& target, Vector2f a, Vector2f b, float thickness, Col
     float length = sqrt(dx * dx + dy * dy);
     if (length == 0) return;
 
-    float sideX = -dy / length * thickness / 2;   // push the corners sideways
+    float sideX = -dy / length * thickness / 2;
     float sideY = dx / length * thickness / 2;
 
     Vertex corners[4] = {

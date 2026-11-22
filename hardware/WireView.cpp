@@ -13,8 +13,6 @@ void WireView::draw(RenderTarget& target) {
     drawLine(target, start, bend1, WIRE_THICKNESS, color);
     drawLine(target, bend1, bend2, WIRE_THICKNESS, color);
     drawLine(target, bend2, end, WIRE_THICKNESS, color);
-
-    // round dots at the corners and ends
     float radius = WIRE_THICKNESS / 2;
     drawCircle(target, start.x, start.y, radius, color);
     drawCircle(target, bend1.x, bend1.y, radius, color);
