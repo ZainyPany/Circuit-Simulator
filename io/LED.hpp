@@ -1,15 +1,22 @@
 #pragma once
-#include <iostream>
+#include <string>
 #include "io/IONode.hpp"
 
-// TASK (Feature 1)
-//
-// LED: output indicator. One input pin.
-//
-// TODO:
-//  - evaluate(): read the input pin and store whether the LED is ON or OFF.
-//  - isOn() getter used by the renderer to pick the color / "LED: ON/OFF" text.
-
 class LED : public IONode {
-    // TODO: members + public interface described above
+public:
+    enum class Color { Red, Green, Blue, Yellow };
+
+private:
+    Color color;
+    bool lit;
+
+public:
+    explicit LED(Color ledColor = Color::Red, const std::string& label = "LED", int x = 0, int y = 0);
+
+    Color getColor() const;
+    bool isOn() const;
+    void setLit(bool value);
+
+    Pin* getInputPin() const;
+    void evaluate() override;
 };

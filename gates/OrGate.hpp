@@ -1,16 +1,8 @@
 #pragma once
-#include <iostream>
 #include "gates/LogicGate.hpp"
 
-// TASK (Feature 1 - Core Simulation Engine)
-//
-// OrGate: 2-input gate.
-//
-// TODO:
-//  - Override computeOutput() with the OR truth table.
-//  - Optionally support more than 2 inputs.
-//  - Report deviceType "OR".
-
 class OrGate : public LogicGate {
-    // TODO: constructor + computeOutput override
+public:
+    explicit OrGate(int inputCount = 2, const std::string& label = "OR", int x = 0, int y = 0);
+    bool computeOutput(const std::vector<bool>& inputs) const override;
 };

@@ -1,20 +1,30 @@
 #pragma once
-#include <iostream>
+#include <string>
+#include <utility>
 #include <vector>
 #include "core/Pin.hpp"
 
-// TASK (Feature 3 - Wiring & Signal Propagation)
-//
-// Wire: connects ONE output Pin to ONE input Pin and transfers state between them.
-//
-// TODO:
-//  - Data: pointer to source Pin (output), pointer to destination Pin (input),
-//          color, routingPath (list of grid points), currentSignal.
-//  - Constructor validating the connection (output -> input only, no output -> output).
-//  - propagate(): copy source state to destination pin.
-//  - Getters for both pins, color (changes with High/Low), routing path.
-//  - Decide: should the Wire own the Pins or only point to them? (Pins belong to Components.)
-
 class Wire {
-    // TODO: members + public interface described above
+private:
+    Pin* sourcePin;
+    Pin* destinationPin;
+    std::string colorName;
+    std::vector<std::pair<int, int>> routingPath;
+    bool currentSignal;
+
+public:
+    Wire(Pin* source, Pin* destination, const std::string& color = "Yellow");
+
+    bool isValid() const;
+    void propagate();
+
+    Pin* getSource() const;
+    Pin* getDestination() const;
+
+    bool getSignal() const;
+    const std::string& getColor() const;
+    void setColor(const std::string& color);
+
+    const std::vector<std::pair<int, int>>& getRoutingPath() const;
+    void setRoutingPath(const std::vector<std::pair<int, int>>& path);
 };
