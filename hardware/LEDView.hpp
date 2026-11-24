@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "hardware/BreadboardView.hpp"
+#include "BreadboardView.hpp"
 using namespace sf;
 
 enum class LEDColor { Red, Green, Yellow, Blue };

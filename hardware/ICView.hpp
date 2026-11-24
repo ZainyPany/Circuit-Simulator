@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <SFML/Graphics.hpp>
-#include "hardware/BreadboardView.hpp"
+#include "BreadboardView.hpp"
 using namespace std;
 using namespace sf;
 
