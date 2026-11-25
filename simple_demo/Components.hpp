@@ -4,9 +4,7 @@
 #include <vector>
 #include "Component.hpp"
 
-// ----------------------------------------------------------------------------
-// 5V DC Power Supply (has +5V and GND output terminals to power the ICs)
-// ----------------------------------------------------------------------------
+// 5V DC power supply with +5V and GND output terminals
 class PowerSupplyUnit : public Component {
 public:
     bool enabled;
@@ -18,9 +16,7 @@ public:
     void draw(sf::RenderWindow& window, const sf::Font& font) const override;
 };
 
-// ----------------------------------------------------------------------------
-// Push Button (click body to toggle 0 / 1; has 1 Output leg)
-// ----------------------------------------------------------------------------
+// Push button that toggles between logic 0 and 1
 class PushButton : public Component {
 public:
     bool pressed;
@@ -32,11 +28,7 @@ public:
     void draw(sf::RenderWindow& window, const sf::Font& font) const override;
 };
 
-// ----------------------------------------------------------------------------
-// Original 14-Pin DIP TTL Logic ICs: 7408 (AND), 7402 (NOR), 7404 (NOT), 7486 (XOR)
-//   - Bottom row (left to right): Pins 1..7   (Pin 7  = GND)
-//   - Top row    (left to right): Pins 14..8  (Pin 14 = VCC +5V)
-// ----------------------------------------------------------------------------
+// 14-pin DIP TTL logic IC
 enum class GateType {
     IC7408_AND,
     IC7402_NOR,
@@ -45,9 +37,9 @@ enum class GateType {
 };
 
 struct InternalGate {
-    int in1;  // 1-based pin number
-    int in2;  // 1-based pin number (0 for 1-input NOT gate)
-    int out;  // 1-based pin number
+    int in1;  // 1-based pin number for input 1
+    int in2;  // 1-based pin number for input 2 (0 for NOT gate)
+    int out;  // 1-based pin number for output
 };
 
 class GateIC : public Component {
@@ -62,9 +54,7 @@ public:
     void draw(sf::RenderWindow& window, const sf::Font& font) const override;
 };
 
-// ----------------------------------------------------------------------------
-// LED (Red, Green, Blue; has 1 Input leg)
-// ----------------------------------------------------------------------------
+// LED indicator
 class LED : public Component {
 public:
     sf::Color onColor;

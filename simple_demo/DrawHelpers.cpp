@@ -1,12 +1,14 @@
 #include "DrawHelpers.hpp"
 #include <cmath>
 
+// Calculates distance between two points: sqrt(dx^2 + dy^2)
 float distanceBetween(sf::Vector2f a, sf::Vector2f b) {
     float dx = a.x - b.x;
     float dy = a.y - b.y;
     return std::sqrt(dx * dx + dy * dy);
 }
 
+// Draws text centered at coordinates (x, y)
 void drawCenteredText(sf::RenderWindow& window, const sf::Font& font,
                       const std::string& str, unsigned int size,
                       sf::Color color, float x, float y) {
@@ -19,6 +21,7 @@ void drawCenteredText(sf::RenderWindow& window, const sf::Font& font,
     window.draw(text);
 }
 
+// Draws a line of specified thickness using a triangle-strip rectangle
 void drawThickLine(sf::RenderWindow& window, sf::Vector2f a, sf::Vector2f b,
                    float thickness, sf::Color color) {
     float dx = b.x - a.x;
@@ -26,6 +29,7 @@ void drawThickLine(sf::RenderWindow& window, sf::Vector2f a, sf::Vector2f b,
     float len = std::sqrt(dx * dx + dy * dy);
     if (len < 0.001f) return;
 
+    // Perpendicular normal vector scaled by half-thickness: (-dy/len, dx/len) * (thickness / 2)
     float offsetX = (-dy / len) * (thickness / 2.0f);
     float offsetY = ( dx / len) * (thickness / 2.0f);
 
